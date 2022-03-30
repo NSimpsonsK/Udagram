@@ -11,6 +11,8 @@ import { V0_FEED_MODELS, V0_USER_MODELS } from "./controllers/v0/model.index";
 (async () => {
   dotenv.config();
 
+  console.log(process.env.POSTGRES_USERNAME);
+
   await sequelize.addModels(V0_FEED_MODELS);
   await sequelize.addModels(V0_USER_MODELS);
   await sequelize.sync();
@@ -18,7 +20,7 @@ import { V0_FEED_MODELS, V0_USER_MODELS } from "./controllers/v0/model.index";
   console.log("Database Connected");
 
   const app = express();
-  const port = process.env.PORT || 8080;
+  const port = 8080;
 
   app.use(bodyParser.json());
 
@@ -33,7 +35,7 @@ import { V0_FEED_MODELS, V0_USER_MODELS } from "./controllers/v0/model.index";
 
   // Start the Server
   app.listen(port, () => {
-    console.log(`server running ${process.env.URL}`);
+    console.log(`server running ${port}`);
     console.log(`press CTRL+C to stop server`);
   });
 })();
